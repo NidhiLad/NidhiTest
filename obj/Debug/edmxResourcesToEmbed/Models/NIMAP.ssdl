@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NidhiDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CatagoryMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CatName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CatDesc" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ProductMaster">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="catid" Type="int" Nullable="false" />
+    <Property Name="catName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProdName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="ProdDesc" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__ProductMa__catid__239E4DCF">
+    <End Role="CatagoryMaster" Type="Self.CatagoryMaster" Multiplicity="1" />
+    <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CatagoryMaster">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ProductMaster">
+        <PropertyRef Name="catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NidhiDatabaseModelStoreContainer">
+    <EntitySet Name="CatagoryMaster" EntityType="Self.CatagoryMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__ProductMa__catid__239E4DCF" Association="Self.FK__ProductMa__catid__239E4DCF">
+      <End Role="CatagoryMaster" EntitySet="CatagoryMaster" />
+      <End Role="ProductMaster" EntitySet="ProductMaster" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

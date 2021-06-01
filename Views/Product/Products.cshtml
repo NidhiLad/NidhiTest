@@ -1,0 +1,80 @@
+﻿@model NIMAPTest.Models.ProducuctListModel
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int sr = 1;
+}
+
+<p>
+
+    @Html.ActionLink("Add New", "AddProduct", "Product")
+</p>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Products</h3>
+    </div>
+    @using (Html.BeginForm("Products", "Product", FormMethod.Post))
+    {
+        <div class="box-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Sr. No</th>
+                        <th>Catagory</th>
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prod in Model.ProductList)
+                    {
+                        <tr>
+                            <td>@sr</td>
+                            <td>@prod.catName</td>
+                            <td>@prod.ProdName</td>
+                            <td>@prod.ProdDesc</td>
+                            <td>
+                                @Html.ActionLink("Edit", "AddProduct", new { id = Convert.ToInt32(prod.id) }) |
+                                @Html.ActionLink("Delete", "DeleteProduct", new { id = Convert.ToInt32(prod.id) })
+                            </td>
+                        </tr>
+                        sr++;
+                    }
+                </tbody>
+            </table>
+            <br />
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <td>
+                            @if (i != Model.CurrentPageIndex)
+                            {
+                                <a href="javascript:PagerClick(@i);">@i</a>
+
+                            }
+                            else
+                            {
+                                <span>@i</span>
+                            }
+                        </td>
+                    }
+                </tr>
+            </table>
+            <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+
+        </div>
+    }
+
+</div>
+
+<script type="text/javascript">
+            function PagerClick(index) {
+
+                $("#hfCurrentPageIndex").val(index);
+                document.forms[0].submit();
+            }
+</script>
+

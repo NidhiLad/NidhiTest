@@ -1,0 +1,48 @@
+﻿@model NIMAPTest.Models.ProductViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddProduct</title>
+</head>
+<body>
+    @Html.ActionLink("Goto List", "Product")
+    <div>
+        @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label class="control-label">Catagory</label>
+                @Html.DropDownListFor(m => m.catid, (IEnumerable<SelectListItem>)ViewBag.catagory, new { @id = "ddlcat", @class = "form-control form-group" })
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Product Name</label>
+                @Html.TextBoxFor(m => m.ProdName, new { @id = "txtProdname", @class = "form-control form-group", @placeholder = "Product Name" })
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Description</label>
+                @Html.TextAreaFor(m => m.ProdDesc, new { @id = "txtProdDesc", @class = "form-control form-group", @placeholder = "Description" })
+
+            </div>
+            <div class="form-group">
+                <label class="control-label">Product Price</label>
+                @Html.TextAreaFor(m => m.ProdPrice, new { @id = "txtPrice", @class = "form-control form-group", @placeholder = "Price" })
+
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <input type="submit" value="Save" id="btnSave" class="btn btn-primary btn-block btn-flat" />
+
+                </div><!-- /.col -->
+            </div>
+
+        }
+    </div>
+</body>
+</html>

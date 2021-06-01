@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NidhiDatabaseModelStoreContainer" CdmEntityContainer="NidhiDatabaseEntities">
+    <EntitySetMapping Name="CatagoryMasters">
+      <EntityTypeMapping TypeName="NidhiDatabaseModel.CatagoryMaster">
+        <MappingFragment StoreEntitySet="CatagoryMaster">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CatName" ColumnName="CatName" />
+          <ScalarProperty Name="CatDesc" ColumnName="CatDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductMasters">
+      <EntityTypeMapping TypeName="NidhiDatabaseModel.ProductMaster">
+        <MappingFragment StoreEntitySet="ProductMaster">
+          <ScalarProperty Name="catName" ColumnName="catName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="catid" ColumnName="catid" />
+          <ScalarProperty Name="ProdName" ColumnName="ProdName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="ProdDesc" ColumnName="ProdDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
